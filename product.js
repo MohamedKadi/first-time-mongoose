@@ -18,7 +18,8 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-        min: 1
+        //the second option for error handling
+        min: [1,'price must be positive']
     },
     onSale: {
         type: Boolean,
@@ -39,12 +40,16 @@ const productSchema = new mongoose.Schema({
             default: 0,
         }
 
+    },
+    size: {
+        type: String,
+        enum: ['S', 'M','L']
     }
 })
 
 const Product = mongoose.model('Product', productSchema);
 
-const bike = new Product({name: 'Mountain bike', price: 299, categories:['cycling','safety']});
+const bike = new Product({name: 'Mountain bike', price: 299, categories:['cycling','safety'], size: 'M'});
 bike.save()
 .then(data=>{
     console.log(data);
@@ -52,3 +57,12 @@ bike.save()
 .catch(e=>{
     console.log(e.message);
 })
+
+//new to give the new docs after updating it and runValidator for checking the values and validate them before updating cuz without it it will update without checking
+// Product.findOneAndUpdate({name: 'Tire pump'},{price: -10.99},{new: true, runValidators})
+// .then(data => {
+//     console.log(data);
+// })
+// .catch(e=>{
+//     console.log(e.message);
+// })
