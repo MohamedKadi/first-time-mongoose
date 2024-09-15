@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema({
     //cetegories: [String]
     cetegories: {
         type: String,
-        default: ['cycling']
+        default: 'cycling'
     },
     qty: {
         online: {
@@ -47,7 +47,24 @@ const productSchema = new mongoose.Schema({
     }
 })
 
+// productSchema.methods.greet =  () => {
+//     console.log("Hello!! ", this.name);
+// }
+// productSchema.Schema.methods.toggleonSale = ()=>{
+//     this.onSale = !this.onSale;
+//      return this.save();
+// }
 const Product = mongoose.model('Product', productSchema);
+
+// const findProduct = async () =>{
+//     const foundProduct = await Product.findOne({name: 'Mountain bike'});
+//     foundProduct.greet();
+//     console.log(foundProduct);
+//     await foundProduct.toggleonSale;
+//     console.log(foundProduct);
+// }
+
+// findProduct();
 
 const bike = new Product({name: 'Mountain bike', price: 299, categories:['cycling','safety'], size: 'M'});
 bike.save()
@@ -55,7 +72,7 @@ bike.save()
     console.log(data);
 })
 .catch(e=>{
-    console.log(e.message);
+    console.log(e);
 })
 
 //new to give the new docs after updating it and runValidator for checking the values and validate them before updating cuz without it it will update without checking
