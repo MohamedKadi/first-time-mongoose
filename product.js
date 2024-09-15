@@ -54,6 +54,11 @@ const productSchema = new mongoose.Schema({
 //     this.onSale = !this.onSale;
 //      return this.save();
 // }
+
+productSchema.statics.fireSale = function(){
+    return this.updateMany({},{onSale: true, price: 0})
+}
+
 const Product = mongoose.model('Product', productSchema);
 
 // const findProduct = async () =>{
@@ -63,7 +68,7 @@ const Product = mongoose.model('Product', productSchema);
 //     await foundProduct.toggleonSale;
 //     console.log(foundProduct);
 // }
-
+Product.fireSale().then(res => console.log(object));
 // findProduct();
 
 const bike = new Product({name: 'Mountain bike', price: 299, categories:['cycling','safety'], size: 'M'});
