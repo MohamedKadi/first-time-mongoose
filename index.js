@@ -16,4 +16,11 @@ const movieSchema = new mongoose.Schema({
     rating: String,
 });
 
-const movieModel = mongoose.model('movieModel', movieSchema);
+const Movie = mongoose.model('Movie', movieSchema);
+//after making our model now we can instantiate from it
+const silenceMovie = new Movie({
+    title: 'silence',
+    year: 1995,
+    score: 7.5,
+    rating: 'A'
+})
