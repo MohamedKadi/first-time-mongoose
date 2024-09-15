@@ -25,3 +25,19 @@ const silenceMovie = new Movie({
     rating: 'A'
 })
 //But we still haven't saved anything to MongoDB. Each document can be saved to the database by calling its save method.
+silenceMovie.save();
+
+Movie.insertMany([
+    {title: 'Amelie', year: 2001, score: 8.3, rating: 'R'},
+    {title: 'Alien', year: 1979, score: 8.1, rating: 'R'},
+    {title: 'Stand By Me', year: 1986, score: 7.5, rating: 'PG'},
+    {title: 'Moonrise Kingdom', year: 2012, score: 7.3, rating: 'PG-13'}
+])
+.then(data=>{
+    console.log("Worked");
+    console.log(data);
+})
+.catch(e=>{
+    console.log("didn't work :(");
+    console.log(e.message);
+})
