@@ -14,4 +14,6 @@ const movieSchema = new mongoose.Schema({
     year: Number,
     score: Number,
     rating: String,
-  });
+});
+
+const movieModel = mongoose.model('movieModel', movieSchema);
